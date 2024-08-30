@@ -28,23 +28,38 @@ export const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: '', redirectTo: 'inbox', pathMatch: 'full' },
-      { path: 'inbox', component: InboxComponent },
+      { path: 'inbox', component: InboxComponent, title: 'البريد الوارد' },
       {
         path: 'branches',
         pathMatch: 'prefix',
         children: [
-          { path: '', pathMatch: 'full', component: BranchesComponent },
-          { path: 'create-new-branch', component: CreateNewBranchComponent },
+          {
+            path: '',
+            pathMatch: 'full',
+            component: BranchesComponent,
+            title: 'الفروع',
+          },
+          {
+            path: 'create-new-branch',
+            component: CreateNewBranchComponent,
+            title: 'إضافة فرع جديد',
+          },
         ],
       },
       {
         path: 'departments',
         pathMatch: 'prefix',
         children: [
-          { path: '', pathMatch: 'full', component: DepartmentsComponent },
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DepartmentsComponent,
+            title: 'الأقسام الطبية',
+          },
           {
             path: 'create-new-department',
             component: CreateNewDepartmentComponent,
+            title: 'إضافة قسم جديد',
           },
         ],
       },
@@ -52,10 +67,16 @@ export const routes: Routes = [
         path: 'doctors',
         pathMatch: 'prefix',
         children: [
-          { path: '', pathMatch: 'full', component: DoctorsComponent },
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DoctorsComponent,
+            title: 'الأطباء',
+          },
           {
             path: 'create-new-doctor',
             component: CreateNewDoctorComponent,
+            title: 'إضافة طبيب جديد',
           },
         ],
       },
@@ -63,10 +84,16 @@ export const routes: Routes = [
         path: 'employees',
         pathMatch: 'prefix',
         children: [
-          { path: '', pathMatch: 'full', component: EmployeesComponent },
+          {
+            path: '',
+            pathMatch: 'full',
+            component: EmployeesComponent,
+            title: 'الموظفين',
+          },
           {
             path: 'create-new-employee',
             component: CreateNewEmployeeComponent,
+            title: 'إضافة موظف جديد',
           },
         ],
       },
@@ -74,10 +101,16 @@ export const routes: Routes = [
         path: 'reservations',
         pathMatch: 'prefix',
         children: [
-          { path: '', pathMatch: 'full', component: ReservationsComponent },
+          {
+            path: '',
+            pathMatch: 'full',
+            component: ReservationsComponent,
+            title: 'الحجوزات',
+          },
           {
             path: 'create-new-reservation',
             component: CreateNewReservationComponent,
+            title: 'إضافة حجز جديد',
           },
         ],
       },
@@ -92,11 +125,18 @@ export const routes: Routes = [
       {
         path: 'reservations',
         pathMatch: 'prefix',
+        title: 'الحجوزات',
         children: [
-          { path: '', pathMatch: 'full', component: CsReservationsComponent },
+          {
+            path: '',
+            pathMatch: 'full',
+            component: CsReservationsComponent,
+            title: 'الحجوزات',
+          },
           {
             path: 'create-new-reservation',
             component: CsCreateNewReservationComponent,
+            title: 'إضافة حجز جديد',
           },
         ],
       },
@@ -108,8 +148,16 @@ export const routes: Routes = [
     component: DoctorComponent,
     children: [
       { path: '', redirectTo: 'today-reservations', pathMatch: 'full' },
-      { path: 'today-reservations', component: TodayReservationsComponent },
-      { path: 'reservations', component: DReservationsComponent },
+      {
+        path: 'today-reservations',
+        component: TodayReservationsComponent,
+        title: 'حجوزات اليوم',
+      },
+      {
+        path: 'reservations',
+        component: DReservationsComponent,
+        title: 'الحجوزات',
+      },
     ],
   },
 ];
