@@ -1,0 +1,53 @@
+<section>
+  <app-heading message="الحجوزات"></app-heading>
+
+  <a routerLink="create-new-reservation">
+    <div class="flex justify-end mb-5"><button>إضافة حجز جديد</button></div></a
+  >
+
+  @if (reservations) { @if (reservations.length == 0) {
+  <p class="text-center">لا توجد بيانات</p>
+  } @else {
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>اسم المريض</th>
+        <th>رقم الجوال</th>
+        <th>البريد الإلكتروني</th>
+        <th>الطبيب</th>
+        <th>تاريخ الحجز</th>
+        <th>وقت الحجز</th>
+        <th>رابط الاجتماع</th>
+        <th>حذف الحجز</th>
+      </thead>
+      <tbody>
+        @for (res of reservations; track res.id) {
+        <tr>
+          <td>{{ res.patient_name }}</td>
+          <td>{{ res.patient_phone }}</td>
+          <td>{{ res.patient_email }}</td>
+          <td>{{ res.doctor.user.name }}</td>
+          <td>{{ res.date }}</td>
+          <td>{{ res.time }}</td>
+          <td><button (click)="copy(res.meeting_url)">نسخ الرابط</button></td>
+
+          <td>
+            <div
+              class="text-rose-700 hover:text-rose-500 cursor-pointer"
+              (click)="deleteReservation(res.id)"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</section>
+@if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+} @if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+}

@@ -1,0 +1,44 @@
+<section>
+  <app-heading message="الأطباء"></app-heading>
+
+  <a routerLink="create-new-doctor">
+    <div class="flex justify-end mb-5"><button>إضافة طبيب جديد</button></div></a
+  >
+
+  @if (doctors) { @if (doctors.length == 0) {
+  <p class="text-center">لا توجد بيانات</p>
+  } @else {
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>اسم الطبيب</th>
+        <th>الفرع</th>
+        <th>القسم الطبي</th>
+        <th>حذف الطبيب</th>
+      </thead>
+      <tbody>
+        @for (doc of doctors; track doc.id) {
+        <tr>
+          <td>{{ doc.user.name }}</td>
+          <td>{{ doc.branch.title }}</td>
+          <td>{{ doc.department.title }}</td>
+          <td>
+            <div
+              class="text-rose-700 hover:text-rose-500 cursor-pointer"
+              (click)="deleteDoctor(doc.id)"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</section>
+@if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+} @if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+}

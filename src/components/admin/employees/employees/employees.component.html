@@ -1,0 +1,48 @@
+<section>
+  <app-heading message="الموظفين"></app-heading>
+
+  <a routerLink="create-new-employee">
+    <div class="flex justify-end mb-5"><button>إضافة موظف جديد</button></div></a
+  >
+
+  @if (employees) { @if (employees.length == 0) {
+  <p class="text-center">لا توجد بيانات</p>
+  } @else {
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>اسم الموظف</th>
+        <th>البريد الإلكتروني</th>
+        <th>تعديل بيانات الموظف</th>
+        <th>حذف الموظف</th>
+      </thead>
+      <tbody>
+        @for (employee of employees; track employee.id) {
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>
+            <div class="text-primary hover:text-secondary cursor-pointer">
+              <fa-icon [icon]="icons.edit"></fa-icon>
+            </div>
+          </td>
+          <td>
+            <div
+              class="text-rose-700 hover:text-rose-500 cursor-pointer"
+              (click)="deleteEmployee(employee.id)"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</section>
+@if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+} @if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+}

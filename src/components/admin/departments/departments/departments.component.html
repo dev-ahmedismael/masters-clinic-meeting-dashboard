@@ -1,0 +1,48 @@
+<section>
+  <app-heading message="الأقسام الطبية"></app-heading>
+
+  <a routerLink="create-new-department">
+    <div class="flex justify-end mb-5"><button>إضافة قسم جديد</button></div></a
+  >
+
+  @if (departments) { @if (departments.length == 0) {
+  <p class="text-center">لا توجد بيانات</p>
+  } @else {
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>اسم القسم</th>
+        <th>رابط القسم</th>
+        <th>تعديل القسم</th>
+        <th>حذف القسم</th>
+      </thead>
+      <tbody>
+        @for (dep of departments; track dep.id) {
+        <tr>
+          <td>{{ dep.title }}</td>
+          <td>{{ dep.slug }}</td>
+          <td>
+            <div class="text-primary hover:text-secondary cursor-pointer">
+              <fa-icon [icon]="icons.edit"></fa-icon>
+            </div>
+          </td>
+          <td>
+            <div
+              class="text-rose-700 hover:text-rose-500 cursor-pointer"
+              (click)="deleteDepartment(dep.id)"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</section>
+@if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+} @if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+}

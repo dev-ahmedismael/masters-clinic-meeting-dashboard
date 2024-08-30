@@ -1,0 +1,60 @@
+<section>
+  <app-heading message="إضافة طبيب جديد"></app-heading>
+  <!-- Form -->
+
+  @if (branches.length !== 0 && departments.length !== 0) {
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <div>
+      <label for="branch_id">اختر الفرع التابع له الطبيب</label>
+      <select name="branch_id" id="branch_id" formControlName="branch_id">
+        @for (branch of branches; track branch.id) {
+        <option [value]="branch.id">{{ branch.title }}</option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <label for="department_id">اختر القسم التابع له الطبيب</label>
+      <select
+        name="department_id"
+        id="department_id"
+        formControlName="department_id"
+        ngModel
+      >
+        @for (dep of departments; track dep.id) {
+        <option [value]="dep.id">{{ dep.title }}</option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <label for="user_id">اسم المستخدم الخاص بالطبيب</label>
+      <select name="user_id" id="user_id" formControlName="user_id">
+        @for (emp of employees; track emp.id) {
+        <option [value]="emp.id">
+          {{ emp.name }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="form.invalid">إضافة الطبيب</button>
+    </div>
+  </form>
+  }
+  <div class="w-fit">
+    <a routerLink="/admin/doctors">
+      <p class="text-primary hover:text-secondary mt-10">عودة للخلف</p>
+    </a>
+  </div>
+</section>
+@if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+} @if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+}

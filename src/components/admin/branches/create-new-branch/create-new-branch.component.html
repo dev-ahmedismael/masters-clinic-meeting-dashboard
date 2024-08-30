@@ -1,0 +1,66 @@
+<section>
+  <app-heading message="إضافة فرع جديد"></app-heading>
+
+  <!-- Form -->
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <div>
+      <label for="title">اسم الفرع</label>
+      <input
+        type="text"
+        formControlName="title"
+        name="title"
+        placeholder="ادخل اسم الفرع"
+      />
+    </div>
+
+    <div>
+      <label for="slug">الرابط</label>
+      <input
+        type="text"
+        formControlName="slug"
+        name="slug"
+        placeholder="ادخل رابط خاص بالفرع"
+      />
+    </div>
+
+    <div>
+      <label for="address">العنوان</label>
+      <input
+        type="text"
+        formControlName="address"
+        name="address"
+        placeholder="ادخل العنوان الخاص بالفرع"
+      />
+    </div>
+
+    <div>
+      <label for="location">الموقع على جوجل ماب</label>
+      <input
+        type="text"
+        formControlName="location"
+        name="location"
+        placeholder="ادخل موقع الفرع على خرائط جوجل  "
+      />
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="form.invalid">إضافة الفرع</button>
+    </div>
+  </form>
+
+  <div class="w-fit">
+    <a routerLink="/admin/branches">
+      <p class="text-primary hover:text-secondary mt-10">عودة للخلف</p>
+    </a>
+  </div>
+</section>
+@if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+} @if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+}

@@ -1,0 +1,72 @@
+<section>
+  <app-heading message="إضافة موظف جديد"></app-heading>
+
+  <!-- Form -->
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <div>
+      <label for="name">اسم الموظف</label>
+      <input
+        type="text"
+        formControlName="name"
+        name="name"
+        placeholder="ادخل اسم الموظف"
+      />
+    </div>
+
+    <div>
+      <label for="email">البريد الإلكتروني</label>
+      <input
+        type="text"
+        formControlName="email"
+        name="email"
+        placeholder="ادخل البريد الإلكتروني للموظف"
+      />
+    </div>
+
+    <div>
+      <label for="password">كلمة المرور</label>
+      <input
+        type="text"
+        formControlName="password"
+        name="password"
+        placeholder="ادخل كلمة المرور الخاصة بالموظف"
+      />
+    </div>
+
+    <div>
+      <label for="role">الدور</label>
+      <select
+        type="text"
+        formControlName="role"
+        name="role"
+        placeholder="دور الموظف على النظام"
+      >
+        @for (role of roles; track role.id) {
+        <option [value]="role.name">
+          {{ role.name }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="form.invalid">إضافة الموظف</button>
+    </div>
+  </form>
+
+  <div class="w-fit">
+    <a routerLink="/admin/branches">
+      <p class="text-primary hover:text-secondary mt-10">عودة للخلف</p>
+    </a>
+  </div>
+</section>
+@if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+} @if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+}

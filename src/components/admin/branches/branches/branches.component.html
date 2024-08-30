@@ -1,0 +1,52 @@
+<section>
+  <app-heading message="الفروع"></app-heading>
+
+  <a routerLink="create-new-branch">
+    <div class="flex justify-end mb-5"><button>إضافة فرع جديد</button></div></a
+  >
+
+  @if (branches) { @if (branches.length == 0) {
+  <p class="text-center">لا توجد بيانات</p>
+  } @else {
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>اسم الفرع</th>
+        <th>الرابط</th>
+        <th>العنوان</th>
+        <th>الموقع على الخريطة</th>
+        <th>تعديل الفرع</th>
+        <th>حذف الفرع</th>
+      </thead>
+      <tbody>
+        @for (branch of branches; track branch.id) {
+        <tr>
+          <td>{{ branch.title }}</td>
+          <td>{{ branch.slug }}</td>
+          <td>{{ branch.address }}</td>
+          <td>{{ branch.location }}</td>
+          <td>
+            <div class="text-primary hover:text-secondary cursor-pointer">
+              <fa-icon [icon]="icons.edit"></fa-icon>
+            </div>
+          </td>
+          <td>
+            <div
+              class="text-rose-700 hover:text-rose-500 cursor-pointer"
+              (click)="deleteBranch(branch.id)"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</section>
+@if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+} @if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+}

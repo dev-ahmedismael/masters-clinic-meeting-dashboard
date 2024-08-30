@@ -1,0 +1,61 @@
+<section>
+  <app-heading message="إضافة قسم جديد"></app-heading>
+
+  <!-- Form -->
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <div>
+      <label for="title">اسم القسم</label>
+      <input
+        type="text"
+        formControlName="title"
+        name="title"
+        placeholder="ادخل اسم القسم"
+      />
+    </div>
+
+    <div>
+      <label for="slug">الرابط</label>
+      <input
+        type="text"
+        formControlName="slug"
+        name="slug"
+        placeholder="ادخل رابط خاص بالقسم"
+      />
+    </div>
+
+    <div>
+      <label for="image">صورة القسم</label>
+      <input type="file" (change)="onFileSelect($event)" />
+    </div>
+
+    <div>
+      <label for="content">المحتوى</label>
+      <textarea
+        name="content"
+        id="content"
+        formControlName="content"
+        placeholder="أضف محتوى للقسم"
+      ></textarea>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="form.invalid">إضافة القسم</button>
+    </div>
+  </form>
+
+  <div class="w-fit">
+    <a routerLink="/admin/departments">
+      <p class="text-primary hover:text-secondary mt-10">عودة للخلف</p>
+    </a>
+  </div>
+</section>
+@if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+} @if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+}

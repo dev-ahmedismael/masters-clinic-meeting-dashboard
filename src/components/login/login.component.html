@@ -1,0 +1,51 @@
+<section class="relative w-full h-screen">
+  <img ngSrc="assets/images/pattern.png" alt="pattern" fill />
+  <div
+    class="absolute top-0 left-0 z-20 w-full h-full flex justify-center items-center"
+  >
+    <div class="bg-white shadow rounded-lg p-10">
+      <div class="flex justify-center mb-10">
+        <img ngSrc="assets/images/logo.png" alt="Logo" width="70" height="70" />
+      </div>
+
+      <!-- Login Form -->
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+        class="flex flex-col gap-5"
+      >
+        <!-- Email -->
+        <div>
+          <label for="email">البريد الإلكتروني</label>
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            name="email"
+            placeholder="name@company.com"
+          />
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label for="password">كلمة المرور</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            name="password"
+            placeholder="********"
+          />
+        </div>
+
+        <!-- Login Button -->
+        <div class="flex justify-center">
+          <button type="submit">تسجيل الدخول</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+@if(errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+}

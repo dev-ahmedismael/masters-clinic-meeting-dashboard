@@ -1,0 +1,127 @@
+<p>cs-create-new-reservation works!</p>
+<section>
+  <app-heading message="إضافة حجز جديد"></app-heading>
+
+  <!-- Form -->
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+  >
+    <div>
+      <label for="branch">اختر الفرع</label>
+      <select
+        type="text"
+        formControlName="branch"
+        name="branch"
+        placeholder="ادخل اسم الفرع"
+        (change)="updateDoctors()"
+      >
+        @for (branch of branches; track branch.id) {
+        <option [value]="branch.id">
+          {{ branch.title }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <label for="department">اختر التخصص الطبي</label>
+      <select
+        type="text"
+        formControlName="department"
+        name="department"
+        placeholder="ادخل التخصص الطبي"
+        (change)="updateDoctors()"
+      >
+        @for (dep of departments; track dep.id) {
+        <option [value]="dep.id">
+          {{ dep.title }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <label for="doctor_id">اختر الطبيب</label>
+      <select
+        type="text"
+        formControlName="doctor_id"
+        name="doctor_id"
+        placeholder="اختر الطبيب"
+      >
+        @if (doctors.length == 0) {
+        <option [value]="null" [disabled]="true">
+          لا يوجد أطباء في هذا التخصص
+        </option>
+        } @else {@for (doc of doctors; track doc.id) {
+        <option [value]="doc.id">
+          {{ doc.user.name }}
+        </option>
+        }}
+      </select>
+    </div>
+
+    <div>
+      <label for="patient_name">الاسم</label>
+      <input
+        type="text"
+        name="patient_name"
+        id="patient_name"
+        formControlName="patient_name"
+      />
+    </div>
+    <div>
+      <label for="patient_phone">رقم الجوال</label>
+      <input
+        type="text"
+        name="patient_phone"
+        id="patient_phone"
+        formControlName="patient_phone"
+      />
+    </div>
+
+    <div>
+      <label for="patient_email">البريد الإلكتروني</label>
+      <input
+        type="email"
+        name="patient_email"
+        id="patient_email"
+        formControlName="patient_email"
+      />
+    </div>
+
+    <div>
+      <label for="date">تاريخ الحجز</label>
+      <input type="date" name="date" formControlName="date" />
+    </div>
+
+    <div>
+      <label for="time">وقت الحجز</label>
+      <select id="time" name="time" formControlName="time">
+        @for (time of times; track $index) {
+        <option [value]="time.value">{{ time.time }}</option>
+        }
+      </select>
+    </div>
+
+    <div></div>
+
+    <div class="md:col-span-2">
+      <button type="submit" [disabled]="form.invalid" class="w-full">
+        حجز
+      </button>
+    </div>
+  </form>
+
+  <div class="w-fit">
+    <a routerLink="/customer-service/reservations">
+      <p class="text-primary hover:text-secondary mt-10">عودة للخلف</p>
+    </a>
+  </div>
+</section>
+@if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+} @if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+}

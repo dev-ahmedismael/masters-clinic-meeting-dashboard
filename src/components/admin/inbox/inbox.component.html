@@ -1,0 +1,45 @@
+<section>
+  <app-heading message="البريد الوارد"></app-heading>
+
+  @if (messages) { @if (messages.length == 0) {
+  <p class="text-center">لا توجد رسائل</p>
+  } @else {
+  <div class="table-container">
+    <table>
+      <thead>
+        <th>اسم المرسل</th>
+        <th>رقم الجوال</th>
+        <th>البريد الإلكتروني</th>
+        <th>موضوع الرسالة</th>
+        <th>الرسالة</th>
+        <th>حذف الرسالة</th>
+      </thead>
+      <tbody>
+        @for (m of messages; track m.id) {
+        <tr>
+          <td>{{ m.name }}</td>
+          <td>{{ m.phone }}</td>
+          <td>{{ m.email }}</td>
+          <td>{{ m.subject }}</td>
+          <td>{{ m.message }}</td>
+
+          <td>
+            <div
+              class="text-rose-700 hover:text-rose-500 cursor-pointer"
+              (click)="deleteDepartment(m.id)"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</section>
+@if (errorMessage) {
+<app-error-message [message]="errorMessage"></app-error-message>
+} @if (successMessage) {
+<app-success-message [message]="successMessage"></app-success-message>
+}

@@ -1,1 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  scroll-behavior: smooth;
+  font-family: "Cairo", sans-serif;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  border: 1px solid #e2e8f0; // Slate 200
+  min-width: 250px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 0px 10px;
+}
+input:focus {
+  outline: 2px solid #199ad9;
+}
+
+textarea {
+  border: 1px solid #e2e8f0; // Slate 200
+  min-width: 250px;
+  border-radius: 8px;
+  padding: 0px 10px;
+}
+textarea:focus {
+  outline: 2px solid #199ad9;
+}
+
+button {
+  background-color: #facc15;
+  color: white;
+  padding: 8px 30px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+}
+button:hover {
+  background-color: #fde047;
+}
+
+aside,
+main {
+  min-height: calc(100vh - 86px);
+  max-height: calc(100vh - 86px);
+  overflow-y: auto;
+}
+
+aside {
+  background-color: #161a27;
+}
+
+// Tables
+.table-container {
+  max-width: calc(100vw - 250px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+
+  text-align: center;
+  text-wrap: nowrap;
+}
+thead {
+  height: 40px;
+}
+tr {
+  border: 1px solid #e2e8f0;
+  height: 40px;
+}
+tr:hover {
+  background-color: #f1f5f9;
+}
+td,
+th {
+  padding: 7px 20px;
+}

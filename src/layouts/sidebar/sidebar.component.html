@@ -1,0 +1,13 @@
+<aside
+  class="overflow-y-auto p-10 text-white flex flex-col gap-5 text-nowrap h-screen max-h-screen"
+>
+  @for (item of sidebarItems; track item.id) { @if (item.path) {
+  <a [routerLink]="item.path" routerLinkActive="active">
+    <div class="flex items-center gap-5 hover:text-primary">
+      <div class="text-slate-500"><fa-icon [icon]="item.icon"></fa-icon></div>
+      <div>
+        <p>{{ item.title }}</p>
+      </div>
+    </div> </a
+  >} }
+</aside>
